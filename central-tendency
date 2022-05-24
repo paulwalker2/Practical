@@ -1,0 +1,57 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset('iris')
+
+df
+
+df.head()
+
+df.describe()
+
+df.info()
+
+def mean(data):
+    n = len(data)
+    sum = 0
+    for i in data:
+        sum += i
+    return sum/n
+    
+mean(df['sepal_length'])
+
+df['sepal_length'].mean()
+
+def median(data):
+    data = list(data)
+    data.sort()
+    n = len(data)
+    if n%2 == 0:
+        return data[int(n/2) - 1]
+    else:
+        return data[int(n/2)]
+        
+median(df['sepal_length'])
+
+df['sepal_length'].median()
+
+import math
+import statistics
+def standard_dev(data):
+    data = list(data)
+    mean1 = mean(data)
+    ans = 0
+    for i in data:
+        ans += (i - mean1)*(i - mean1)
+    n = len(data)
+    return math.sqrt(float(ans/n))
+    
+standard_dev(df['sepal_length'])
+
+df['sepal_length'].std()
+
+np.percentile(df['sepal_length'], 25)
+
+np.percentile(df['sepal_length'], 75)
