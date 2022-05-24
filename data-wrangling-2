@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from matplotlib import pyplot as plt
+
+data=pd.read_csv("trip.csv")
+
+data.head()
+
+sns.boxplot(x='birthyear',data=data)
+
+sort = data['birthyear'].sort_values()
+
+sort
+
+q1 = sort.quantile(0.25)
+q3 = sort.quantile(0.75)
+
+print ('q1 is :', q1)
+print ('q3 is :' ,q3)
+
+iqr = q3-q1
+
+upper  = q1-1.5*iqr
+lower =  q3+1.5*iqr
+
+print("The value of lower and upper bound are as follows :", lower, upper)
+
+clean_data = sort[~(sort<(upper))| (sort>(lower))]
+clean_data
+
+sns.boxplot(x=clean_data)
+
+print(np.where(data['birthyear']>1980))
+
+# fig, ax=plt.subplots(figsize=(8,6))
+ax= plt.hist(data['birthyear'], bins=15, color='g', edgecolor='w')
+plt.title('histogram')
+plt.show()
+
+birthyear_transform = data['birthyear'].transform([np.sqrt, np.log, np.reciprocal])
+print(birthyear_transform)
+
+birthyear_transform.hist(bins=20,layout=(2,2), edgecolor='w', figsize=(10,9))
+plt.suptitle('Transformed op')
+plt.show()
+
