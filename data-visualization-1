@@ -1,0 +1,23 @@
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = sns.load_dataset('titanic')
+
+df.head()
+
+df.columns
+
+sns.histplot(df['fare'])
+
+sns.boxplot(df['fare'])
+
+sns.boxplot(x='sex', y='age', data = df)
+
+sns.boxplot(df['sex'], df['age'])
+
+sns.boxplot(x = 'sex', y = 'age', hue = 'survived', data = df)
+
+sns.countplot(x = 'sex', data = df)
+
+sns.jointplot(x = 'sex', y = 'fare', data = df)
