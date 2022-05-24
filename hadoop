@@ -1,0 +1,7 @@
+hadoop fs -mkdir /input
+
+hadoop fs -put file_path/file_name.txt /input
+
+hadoop jar jarpath/jar_name.txt /input /output
+
+hadoop dfs -cat /output_dir/*
