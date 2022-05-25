@@ -1,0 +1,25 @@
+import seaborn as sns
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv("covid_vaccine_statewise.csv")
+
+df.head()
+
+df.describe()
+
+df.columns
+
+df.isnull().sum()
+
+df.groupby('State')['First Dose Administered'].sum()
+
+df.groupby('State')['Second Dose Administered'].sum()
+
+df['Male (Doses Administered)'].sum()
+
+df['Female (Doses Administered)'].sum()
+
+sns.histplot(df['First Dose Administered'])
+
+sns.boxplot(x='Male (Doses Administered)', y='Female (Doses Administered)', data=df)
